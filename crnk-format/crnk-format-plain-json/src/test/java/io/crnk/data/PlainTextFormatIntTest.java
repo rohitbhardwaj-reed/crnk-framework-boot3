@@ -3,8 +3,8 @@ package io.crnk.data;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import jakarta.ws.rs.ApplicationPath;
+import jakarta.ws.rs.core.Application;
 
 import io.crnk.client.CrnkClient;
 import io.crnk.core.engine.http.HttpHeaders;
@@ -60,7 +60,7 @@ public class PlainTextFormatIntTest extends JerseyTestBase {
 
 	@Test
 	public void checkGet() {
-		Response getResponse = RestAssured.get(getBaseUri() + "/tasks/12?include=project");
+		Response getResponse = RestAssured.get(getBaseUri() + "tasks/12?include=project");
 		Assert.assertEquals(200, getResponse.getStatusCode());
 		getResponse.then().assertThat().body("data.id", Matchers.equalTo("12"));
 		getResponse.then().assertThat().body("data.type", Matchers.equalTo("tasks"));
@@ -94,7 +94,7 @@ public class PlainTextFormatIntTest extends JerseyTestBase {
 				contentType(HttpHeaders.JSON_CONTENT_TYPE).
 				body(documentMap).
 				when().
-				post(getBaseUri() + "/tasks");
+				post(getBaseUri() + "tasks");
 		postResponse.then().statusCode(201);
 
 
